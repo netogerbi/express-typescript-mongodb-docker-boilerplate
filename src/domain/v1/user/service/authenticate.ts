@@ -1,8 +1,8 @@
-import env from '../../../../src/config/env';
+import env from '../../../../config/env';
 import { AuthToken, UserLoginDTO } from '../dto';
 import { findOne } from '../repository';
 import jwt from 'jsonwebtoken';
-import { AppError } from '../../../../src/utils';
+import { AppError } from '../../../../utils';
 
 /**
  * authenticate user

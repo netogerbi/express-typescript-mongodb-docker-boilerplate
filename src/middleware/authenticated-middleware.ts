@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { AppError } from 'src/utils';
 import logger from '../config/logger';
-import { isAuthenticated } from '../domain/user/service';
+import { isAuthenticated } from '../domain/v1/user/service';
 
 export const authenticatedMiddleware = (
   req: Request,

@@ -1,5 +1,5 @@
 import { MongoHelper } from '../../../../../src/infra/db';
-import { findOne } from '../../../../../src/domain/user/repository';
+import { findOne } from '../../../../../src/domain/v1/user/repository';
 
 describe('UserRepository.findOne', () => {
   const u = {

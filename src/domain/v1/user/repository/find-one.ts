@@ -1,4 +1,4 @@
-import { MongoHelper } from '../../../infra/db';
+import { MongoHelper } from '../../../../infra/db';
 import { UserLoginDTO } from '../dto';
 import { User } from '../model';
 

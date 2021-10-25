@@ -1,8 +1,8 @@
-import env from '../../../config/env';
+import env from '../../../../config/env';
 import { AuthToken } from '../dto';
 import jwt from 'jsonwebtoken';
-import logger from '../../../config/logger';
-import { AppError } from '../../../utils';
+import logger from '../../../../config/logger';
+import { AppError } from '../../../../utils';
 import { User } from '../model';
 
 export const isAuthenticated = ({ token }: AuthToken): User => {

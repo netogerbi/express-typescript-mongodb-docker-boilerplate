@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
-import { authenticate } from '../../../domain/user/service';
+import { authenticate } from '../../../domain/v1/user/service';
 import logger from '../../../config/logger';
 import { AppError } from 'src/utils';
 

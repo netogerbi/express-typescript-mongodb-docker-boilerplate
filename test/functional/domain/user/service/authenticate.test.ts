@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 import { MongoHelper } from '../../../../../src/infra/db';
 import env from '../../../../../src/config/env';
-import { authenticate } from '../../../../../src/domain/user/service';
+import { authenticate } from '../../../../../src/domain/v1/user/service';
 import { Collection } from 'mongodb';
 import { AppError } from 'src/utils';
 

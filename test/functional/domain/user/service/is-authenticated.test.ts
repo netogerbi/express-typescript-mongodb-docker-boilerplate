@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 import { AppError } from 'src/utils';
 import env from '../../../../../src/config/env';
-import { isAuthenticated } from '../../../../../src/domain/user/service';
+import { isAuthenticated } from '../../../../../src/domain/v1/user/service';
 
 describe('UserService.autheticate', () => {
   let token: string;
