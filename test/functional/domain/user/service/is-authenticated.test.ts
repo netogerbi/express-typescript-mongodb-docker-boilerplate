@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import jwt from 'jsonwebtoken';
-import { AppError } from 'src/utils';
+import { CustomError } from '../../../../../src/utils/errors/interfaces/common-error';
 import env from '../../../../../src/config/env';
 import { isAuthenticated } from '../../../../../src/domain/v1/user/service';
 
@@ -27,14 +27,14 @@ describe('UserService.autheticate', () => {
       'test'
     );
 
-    let r: AppError;
+    let r: CustomError;
     try {
       isAuthenticated({ token: 'Bearer ' + token });
     } catch (err) {
-      r = err as AppError;
+      r = err as CustomError;
     }
 
     expect(r!.message).toMatch(/Unauthorized/i);
-    expect(r!.status).toBe(401);
+    expect(r!.statusCode).toBe(401);
   });
 });

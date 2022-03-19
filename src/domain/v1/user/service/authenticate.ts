@@ -2,7 +2,7 @@ import env from '../../../../config/env';
 import { AuthToken, UserLoginDTO } from '../dto';
 import { findOne } from '../repository';
 import jwt from 'jsonwebtoken';
-import { AppError } from '../../../../utils';
+import { NotAuthorizedError } from '../../../../utils/errors/not-authorized-error';
 
 /**
  * authenticate user
@@ -14,7 +14,7 @@ export const authenticate = async (
 ): Promise<AuthToken> => {
   const userFound = await findOne(userLogin);
 
-  if (!userFound) throw new AppError('Unauthorized', 401);
+  if (!userFound) throw new NotAuthorizedError();
 
   const token = jwt.sign(userFound, env.jwtSecret);
   return { token: 'Bearer ' + token };

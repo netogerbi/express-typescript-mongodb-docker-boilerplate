@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MongoClient, Collection } from 'mongodb';
+import { DatabaseConnectionError } from '../../../utils/errors/database-connection-error';
 import logger from '../../../config/logger';
-import { AppError } from '../../../utils';
 
 export type COLLECTIONS = 'user';
 
@@ -17,7 +17,9 @@ export const MongoHelper = {
 
   async createConstraints() {
     if (!this.client)
-      throw new AppError('Missing mongo conection to create constraints');
+      throw new DatabaseConnectionError(
+        'Missing mongo conection to create constraints'
+      );
 
     await this.getCollection('user')
       .then(

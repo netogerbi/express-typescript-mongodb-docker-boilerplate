@@ -5,7 +5,6 @@ export const validateId = async (
   req: Request,
   res: Response,
   next: NextFunction
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 ): Promise<Response | void> => {
   await check('id', 'id is not valid.')
     .isString()

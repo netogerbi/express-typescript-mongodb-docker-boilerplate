@@ -8,7 +8,6 @@ describe('UserRepository.findOne', () => {
   };
 
   beforeEach(async () => {
-    // MongoHelper.connect(env.mongodbUri);
     const col = await MongoHelper.getCollection('user');
     await col.insertOne({ ...u, name: 'Admin' });
   });

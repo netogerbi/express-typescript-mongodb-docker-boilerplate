@@ -3,7 +3,7 @@ import bunyanFormat from 'bunyan-format';
 import env from './env';
 
 const logger = bunyan.createLogger({
-  name: 'Account-API - v2 //',
+  name: 'Boilerplate-API - v2 //',
   stream: bunyanFormat({ outputMode: 'long' }),
 });
 

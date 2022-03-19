@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: lender-api:latest
+    command: npm run dev
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - data-volume:/data/db
+
+volumes:
+  data-volume:

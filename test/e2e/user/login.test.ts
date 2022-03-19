@@ -5,7 +5,6 @@ describe('User.loginController', () => {
   let col: Collection;
 
   beforeEach(async () => {
-    // MongoHelper.connect(env.mongodbUri);
     col = await MongoHelper.getCollection('user');
     await col.insertOne({
       email: 'test@test.com',
@@ -37,26 +36,18 @@ describe('User.loginController', () => {
     expect(r.status).toBe(401);
   });
 
-  it('should return validation errors and status 422', async () => {
+  it('should return validation errors and status 400', async () => {
     const r = await global.testRequest.post('/login').send({
       email: 'test.com',
       password: '',
     });
 
-    expect(r.status).toBe(422);
-    expect(r.body).toEqual([
-      {
-        value: 'test.com',
-        msg: 'Email is not valid',
-        param: 'email',
-        location: 'body',
-      },
-      {
-        value: '',
-        msg: 'Message cannot be blank',
-        param: 'password',
-        location: 'body',
-      },
-    ]);
+    expect(r.status).toBe(400);
+    expect(r.body).toEqual({
+      message: [
+        { field: 'email', message: 'Email is not valid' },
+        { field: 'password', message: 'Message cannot be blank' },
+      ],
+    });
   });
 });

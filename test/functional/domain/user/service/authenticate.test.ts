@@ -4,13 +4,12 @@ import { MongoHelper } from '../../../../../src/infra/db';
 import env from '../../../../../src/config/env';
 import { authenticate } from '../../../../../src/domain/v1/user/service';
 import { Collection } from 'mongodb';
-import { AppError } from 'src/utils';
+import { CustomError } from '../../../../../src/utils/errors/interfaces/common-error';
 
 describe('UserService.autheticate', () => {
   let col: Collection;
 
   beforeEach(async () => {
-    // MongoHelper.connect(env.mongodbUri);
     col = await MongoHelper.getCollection('user');
     await col.insertOne({
       email: 'test@test.com',
@@ -25,7 +24,7 @@ describe('UserService.autheticate', () => {
 
   it('should autheticate user', async () => {
     const r = await authenticate({ email: 'test@test.com', password: 'test' });
-    const ver = jwt.verify(r.token.substr('Bearer '.length), env.jwtSecret);
+    const ver = jwt.verify(r.token.substring('Bearer '.length), env.jwtSecret);
 
     expect(ver).not.toBeNull();
   });
@@ -33,14 +32,16 @@ describe('UserService.autheticate', () => {
   it('should return null with user not found', async () => {
     col.deleteMany({});
 
-    let r: AppError;
+    let r: CustomError | undefined;
     try {
       await authenticate({ email: 'test@test.com', password: 'test' });
     } catch (err) {
-      r = err as AppError;
+      r = err as CustomError;
     }
 
-    expect(r!.message).toMatch(/Unauthorized/i);
-    expect(r!.status).toBe(401);
+    console.log(r);
+
+    expect(r!.message).toMatch(/Unauthorized/gi);
+    expect(r!.statusCode).toBe(401);
   });
 });

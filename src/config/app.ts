@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express from 'express';
 import morganSetup from './morgan';
 import winstonLoggerError from './winston-logger-error';
