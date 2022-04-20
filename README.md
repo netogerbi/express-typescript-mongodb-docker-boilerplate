@@ -2,8 +2,6 @@
 
 ## Todo List:
 
-- [ ] Configure commit messages
-- [ ] Adjust lint staged configuration
 - [ ] Adjust module alias
 
 ## Installation
@@ -35,3 +33,7 @@ once inside container:
 ```shell
 npm test
 ```
+
+## Commit messages
+
+Types: [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test]
