@@ -17,7 +17,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   preset: 'ts-jest',
   moduleNameMapper: {
-    '@src/(.*)': '<rootDir>/src/$1',
-    '@test/(.*)': '<rootDir>/test/$1',
+    'src/(.*)': '<rootDir>/src/$1',
+    'test/(.*)': '<rootDir>/test/$1',
   },
 };
